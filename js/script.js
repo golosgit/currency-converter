@@ -1,5 +1,4 @@
 {
-  let exchangeRate;
   const exchangeAmount = document.querySelector(".js-exchangeAmount");
   const exchangeCurrency = document.querySelector(".js-exchangeCurrency");
   const resultCurrency = document.querySelector(".js-resultCurrency");
@@ -11,7 +10,7 @@
 
     exchangeCurrencyInfo.innerText = exchangeCurrency.value;
     resultCurrencyInfo.innerText = resultCurrency.value;
-    exchangeRateInfo.innerText = exchangeRate;
+    exchangeRateInfo.innerText = checkRate().toFixed(4);
   };
 
   const calculateResult = (exchangeRate) => {
@@ -19,50 +18,41 @@
   };
 
   const checkRate = () => {
-    const PLNtoEUR = 0.21805;
-    const EURtoPLN = 4.56391;
-    const PLNtoUSD = 0.23418;
-    const USDtoPLN = 4.24671;
-    const USDtoEUR = 0.92783;
-    const EURtoUSD = 1.07041;
+    const eurToPln = 4.6313;
+    const usdToPln = 4.4209;
+    const czkToPln = 0.1874;
+    let exchangeRate;
 
-    if (exchangeCurrency.value === "PLN" && resultCurrency.value === "EUR") {
-      exchangeRate = PLNtoEUR;
-    } else if (
-      exchangeCurrency.value === "PLN" &&
-      resultCurrency.value === "USD"
-    ) {
-      exchangeRate = PLNtoUSD;
-    } else if (
-      exchangeCurrency.value === "EUR" &&
-      resultCurrency.value === "PLN"
-    ) {
-      exchangeRate = EURtoPLN;
-    } else if (
-      exchangeCurrency.value === "EUR" &&
-      resultCurrency.value === "USD"
-    ) {
-      exchangeRate = EURtoUSD;
-    } else if (
-      exchangeCurrency.value === "USD" &&
-      resultCurrency.value === "PLN"
-    ) {
-      exchangeRate = USDtoPLN;
-    } else if (
-      exchangeCurrency.value === "USD" &&
-      resultCurrency.value === "EUR"
-    ) {
-      exchangeRate = USDtoEUR;
-    } else if (exchangeCurrency.value === resultCurrency.value) {
-      exchangeRate = 1;
+    switch (exchangeCurrency.value) {
+      case "PLN":
+        exchangeRate = 1;
+        break;
+      case "EUR":
+        exchangeRate = eurToPln;
+        break;
+      case "USD":
+        exchangeRate = usdToPln;
+        break;
+      case "CZK":
+        exchangeRate = czkToPln;
+        break;
+    }
+    switch (resultCurrency.value) {
+      case "PLN":
+        return exchangeRate;
+      case "EUR":
+        return exchangeRate / eurToPln;
+      case "USD":
+        return exchangeRate / usdToPln;
+      case "CZK":
+        return exchangeRate / czkToPln;
     }
   };
 
   const calculate = () => {
     const resultAmount = document.querySelector(".js-resultAmount");
 
-    checkRate();
-    resultAmount.value = calculateResult(exchangeRate);
+    resultAmount.value = calculateResult(checkRate());
     changeTextInfo();
   };
 
