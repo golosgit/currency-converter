@@ -12,4 +12,7 @@ body {
   background-image: url("../images/background.png");
   background-attachment: fixed;
   font-family: "Noto Sans", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
 }
