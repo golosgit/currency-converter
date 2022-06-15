@@ -10,7 +10,7 @@
 
 .form__input {
   border: 1px solid #bbb;
-  width: 100px;
+  width: 110px;
   border-radius: 4px;
   padding: 5px;
 }
@@ -47,15 +47,4 @@
   font-weight: 700;
   text-align: center;
   margin: 0 auto;
-}
-
-/* znalezione w sieci; usuwa strzałki z inputa typu number */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
 }
