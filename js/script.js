@@ -4,7 +4,9 @@
   const resultCurrency = document.querySelector(".js-resultCurrency");
 
   const changeTextInfo = () => {
-    const exchangeCurrencyInfo = document.querySelector(".js-exchangeCurrencyInfo");
+    const exchangeCurrencyInfo = document.querySelector(
+      ".js-exchangeCurrencyInfo"
+    );
     const resultCurrencyInfo = document.querySelector(".js-resultCurrencyInfo");
     const exchangeRateInfo = document.querySelector(".js-exchangeRateInfo");
 
@@ -49,7 +51,17 @@
     }
   };
 
+  const checkIfPositive = () => {
+    if (Math.sign(exchangeAmount.value) < 0) {
+      exchangeAmount.value = exchangeAmount.value.slice(1);
+      alert("Nie można wprowadzać wartości ujemnych.");
+      return;
+    }
+  };
+
   const calculate = () => {
+    checkIfPositive();
+
     const resultAmount = document.querySelector(".js-resultAmount");
 
     resultAmount.value = calculateResult(checkRate());
