@@ -55,7 +55,6 @@
     if (Math.sign(exchangeAmount.value) < 0) {
       exchangeAmount.value = exchangeAmount.value.slice(1);
       alert("Nie można wprowadzać wartości ujemnych.");
-      return;
     }
   };
 
